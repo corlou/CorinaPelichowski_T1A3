@@ -1,6 +1,5 @@
-from gtts import gTTS
 from termcolor import colored
-import os
+import random
 
 
 class TerminalApp:
@@ -40,6 +39,16 @@ class TerminalApp:
 
         return option
 
+    def get_card_of_the_day(self):
+        tarot_cards = {
+            'The Magician': 'Your wishes and desires can be realized through determination and willpower.',
+            'The High Priestess': 'a time for learning and listening to your intuition.',
+            'The Empress': 'Connect with your feminine side through creativity, elegance, sensuality, fertility, and nurturing.',
+            'The Emperor': 'You have to pursue your goals similar to the way that the Emperor does, structured, strategically, and with a lot of perseverance.'
+        }
+        key, value = random.choice(list(tarot_cards.items()))
+        print(key + ": ", value)
+
     def execute_option(self, option):
         match option:
             case TerminalApp.Option.HISTORY:
@@ -47,7 +56,7 @@ class TerminalApp:
             case TerminalApp.Option.NEW_READING:
                 print("New Reading was selected")
             case TerminalApp.Option.CARD_OF_THE_DAY:
-                print("Card of the Day was selected")
+                self.get_card_of_the_day()
             case TerminalApp.Option.CURRENT_MOON_PHASE:
                 print("Current Moon Phase was selected")
                 pass
