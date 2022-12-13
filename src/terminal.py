@@ -41,19 +41,23 @@ class TerminalApp:
         return option
 
     def get_card_of_the_day(self):
-        key, value = random.choice(list(tarot_cards.items()))
-        print(key + ": ", value)
+        day_card = random.choice(list(tarot_cards))
+        print(day_card)
+
+    def get_reading(self):
+        reading_card = random.choices(list(tarot_cards), k=3)
+        print(reading_card)
 
     def execute_option(self, option):
         match option:
-            case TerminalApp.Option.HISTORY:
-                print("History was selected")
+            # case TerminalApp.Option.HISTORY:
+            #     print("History was selected")
             case TerminalApp.Option.NEW_READING:
-                print("New Reading was selected")
+                self.get_reading()
             case TerminalApp.Option.CARD_OF_THE_DAY:
                 self.get_card_of_the_day()
-            case TerminalApp.Option.CURRENT_MOON_PHASE:
-                print("Current Moon Phase was selected")
-                pass
+            # case TerminalApp.Option.CURRENT_MOON_PHASE:
+            #     print("Current Moon Phase was selected")
+            #     pass
             case _:
                 pass
