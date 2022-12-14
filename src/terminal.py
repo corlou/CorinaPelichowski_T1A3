@@ -1,88 +1,140 @@
 from termcolor import colored
-import random
-from deck import tarot_cards
+from random import choice, sample
 from kerykeion import KrInstance
+from sys import exit
 
 
 class TerminalApp:
     NUMBER_OF_CARDS_IN_READING = 3
+    MONTH_RANGE = (1, 13)
+    DAY_RANGE = (1, 32)
+    OPTION_RANGE = (1, 6)
+    DIVIDER_LEN = 20
 
     class Option:
         HISTORY = 1
         NEW_READING = 2
         CARD_OF_THE_DAY = 3
         STAR_SIGN = 4
+        QUIT = 5
 
     def run(self):
         while True:
             self.print_options()
-            option = self.get_user_selection()
+            option = self.get_int_input_from_terminal(
+                "Select an option: ", TerminalApp.OPTION_RANGE)
             self.execute_option(option)
 
     def print_options(self):
-        print(colored("-------------OPTIONS-------------", 'white'))
+        self.print_divider(
+            TerminalApp.DIVIDER_LEN, "OPTIONS", '*', 'magenta')
         print(colored("1. History", 'green'))
         print(colored("2. New Reading", 'yellow'))
-        print(colored("3. Card of the Day", 'red'))
+        print(colored("3. Card of the Day", 'magenta'))
         print(colored("4. Star Sign Information", 'blue'))
-        print(colored("---------------------------------", 'white'))
+        print(colored("5. Quit", 'red'))
+        self.print_divider(
+            TerminalApp.DIVIDER_LEN, divider='*', color='magenta')
 
-    def get_user_selection(self):
-        while True:
-            try:
-                option = int(input("Select an option: "))
-                if not option in range(1, 5):
-                    raise ValueError
-                break
-            except ValueError:
-                print("Please enter a valid option.")
-
-        return option
+    def print_divider(self, length, title='', divider='-', color='white'):
+        d = divider * (length - int(len(title) / 2))
+        d += title
+        d += divider * (length - int(len(title) / 2))
+        print(colored(d, color))
 
     def __init__(self, deck):
         self.deck = deck
         self.history = []
 
     def get_history(self):
-        for i, val in enumerate(self.history):
+        return self.history
+
+    def print_history(self):
+        history = self.get_history()
+        for i, val in enumerate(history):
             print("Reading {}".format(i + 1))
             for j, card in enumerate(val):
                 print("Card {}: {}".format(j + 1, card))
-            print("------------------------------")
-        return self.history
+            self.print_divider(TerminalApp.DIVIDER_LEN)
 
+    # get the card
     def get_card_of_the_day(self):
-        day_card = random.choice(list(tarot_cards))
-        print(day_card)
-        return day_card
+        return choice(list(self.deck))
 
+    # show the card
+    def print_card_of_the_day(self):
+        day_card = self.get_card_of_the_day()
+        print(day_card)
+
+    # get reading and append to History
     def get_reading(self):
-        reading_cards = random.sample(
-            list(tarot_cards), TerminalApp.NUMBER_OF_CARDS_IN_READING)
+        reading_cards = sample(
+            list(self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
         self.history.append(reading_cards)
-        for card in reading_cards:
-            print(card)
         return reading_cards
 
-    def get_star_sign(self):
-        day = int(input("Day: "))
-        month = int(input("Month: "))
-        obj = KrInstance("User", 2000, month, day, 20, 30)
-        info = obj.sun
+    # show the reading
+    def print_reading(self):
+        reading_cards = self.get_reading()
+        for card in reading_cards:
+            print(card)
+
+    # get star sign
+    def get_star_sign(self, day, month):
+        info = KrInstance("User", month=month, day=day).sun
+        return info
+
+    # show star sign
+    def print_star_sign(self):
+        # this will store the star sign info after we get user input
+        star_sign = None
+        try:
+            # get the user to choose a day
+            day_input = self.get_int_input_from_terminal(
+                "Day: ", TerminalApp.DAY_RANGE)
+            # get the user to choose a month
+            month_input = self.get_int_input_from_terminal(
+                "Month: ", TerminalApp.MONTH_RANGE)
+            # get star sign based on user's day and month
+            star_sign = self.get_star_sign(
+                day_input,
+                month_input
+            )
+        except ValueError as e:
+            print(e)
+        # show star sign info to user
         print("Information")
+        self.print_divider(TerminalApp.DIVIDER_LEN)
         print("Sign: {} {} {} {}".format(
-            info["sign"], info["emoji"], info["element"], info["quality"]))
+            star_sign["sign"], star_sign["emoji"], star_sign["element"], star_sign["quality"]))
+
+    def get_int_input_from_terminal(self, prompt, range_):
+        while True:
+            try:
+                option = int(input(prompt))
+                if not option in range(range_[0], range_[1]):
+                    raise ValueError
+                break
+            except ValueError:
+                print("Please enter a valid whole number.")
+        return option
+
+    def quit(self):
+        print("Closing application")
+        exit(0)
 
     def execute_option(self, option):
         match option:
             case TerminalApp.Option.HISTORY:
-                self.get_history()
+                self.print_history()
             case TerminalApp.Option.NEW_READING:
-                self.get_reading()
+                self.print_reading()
             case TerminalApp.Option.CARD_OF_THE_DAY:
-                self.get_card_of_the_day()
+                self.print_card_of_the_day()
             case TerminalApp.Option.STAR_SIGN:
-                self.get_star_sign()
+                self.print_star_sign()
+            case TerminalApp.Option.QUIT:
+                self.quit()
             case _:
                 # Decide what kind of exception should be raised
                 raise Exception()
