@@ -5,4 +5,4 @@ This assignment is called "Tarot Reader". As Tarot readings are expensive and di
 1. Get a history of their readings
 2. Get a new reading
 3. Get a "Card of the Day"
-4. Get the current Moon Phase
+4. Get their star sign
