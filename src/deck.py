@@ -11,7 +11,7 @@ tarot_cards = [
     "The Hermit: Committing to a personal quest for truth can be one of the most rewarding experiences of life.",
     "Wheel of Fortune: A chance to discover more about yourself and to listen to your gut. There is nothing to fear.",
     "Justice: Cause and effect as well as balanced thought and action.",
-    "The Hanged Man: Vhe sacrifice of people and things that we would rather hold on to. Accept the loss for the greater good.",
+    "The Hanged Man: The sacrifice of people and things that we would rather hold on to. Accept the loss for the greater good.",
     "Death: There is no new beginning without an ending.",
     "Temperance: Hold back from quick judgment. Resist the temptation to react immediately.",
     "Devil: Redirect your attention away from the satisfaction of desires and toward the things that really matter.",

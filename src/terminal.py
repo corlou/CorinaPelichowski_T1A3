@@ -40,18 +40,23 @@ class TerminalApp:
 
         return option
 
+    def get_history(self):
+        for history_reading in self.history:
+            print(history_reading)
+
     def get_card_of_the_day(self):
         day_card = random.choice(list(tarot_cards))
         print(day_card)
 
     def get_reading(self):
-        reading_card = random.choices(list(tarot_cards), k=3)
-        print(reading_card)
+        reading_cards = random.choices(list(tarot_cards), k=3)
+        for card in reading_cards:
+            print(card)
 
     def execute_option(self, option):
         match option:
-            # case TerminalApp.Option.HISTORY:
-            #     print("History was selected")
+            case TerminalApp.Option.HISTORY:
+                self.get_history()
             case TerminalApp.Option.NEW_READING:
                 self.get_reading()
             case TerminalApp.Option.CARD_OF_THE_DAY:
