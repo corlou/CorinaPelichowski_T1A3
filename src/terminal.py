@@ -11,9 +11,6 @@ class TerminalApp:
         CARD_OF_THE_DAY = 3
         CURRENT_MOON_PHASE = 4
 
-    def __init__(self):
-        print("hey")
-
     def run(self):
         while True:
             self.print_options()
@@ -40,16 +37,24 @@ class TerminalApp:
 
         return option
 
+    def __init__(self, deck):
+        self.deck = deck
+        self.history = []
+
     def get_history(self):
-        for history_reading in self.history:
-            print(history_reading)
+        for i, val in enumerate(self.history):
+            print("Reading {}".format(i + 1))
+            for j, card in enumerate(val):
+                print("Card {}: {}".format(j + 1, card))
+            print("------------------------------")
 
     def get_card_of_the_day(self):
         day_card = random.choice(list(tarot_cards))
         print(day_card)
 
     def get_reading(self):
-        reading_cards = random.choices(list(tarot_cards), k=3)
+        reading_cards = random.sample(list(tarot_cards), 3)
+        self.history.append(reading_cards)
         for card in reading_cards:
             print(card)
 
