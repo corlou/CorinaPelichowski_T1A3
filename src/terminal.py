@@ -1,7 +1,7 @@
-from termcolor import colored
-from random import choice, sample
-from kerykeion import KrInstance
 from sys import exit
+from random import choice, sample
+from termcolor import colored
+from kerykeion import KrInstance
 
 
 class TerminalApp:
@@ -57,52 +57,52 @@ class TerminalApp:
                 print("Card {}: {}".format(j + 1, card))
             self.print_divider(TerminalApp.DIVIDER_LEN)
 
-    # get the card
+    # Get a single random card
     def get_card_of_the_day(self):
         return choice(self.deck)
 
-    # show the card
+    # Show the single random card
     def print_card_of_the_day(self):
         day_card = self.get_card_of_the_day()
         print(day_card)
 
-    # get reading and append to History
+    # Get reading and append to History
     def get_reading(self):
         reading_cards = sample(
             (self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
         self.history.append(reading_cards)
         return reading_cards
 
-    # show the reading
+    # Show the reading
     def print_reading(self):
         reading_cards = self.get_reading()
         for card in reading_cards:
             print(card)
 
-    # get star sign
+    # Get star sign
     def get_star_sign(self, day, month):
         info = KrInstance("User", month=month, day=day).sun
         return info
 
-    # show star sign
+    # Show star sign
     def print_star_sign(self):
-        # this will store the star sign info after we get user input
+        # This will store the star sign info after we get user input
         star_sign = None
         try:
-            # get the user to choose a day
+            # User inputs a number to select a day
             day_input = self.get_int_input_from_terminal(
                 "Day: ", TerminalApp.DAY_RANGE)
-            # get the user to choose a month
+            # User inputs a number to select a month
             month_input = self.get_int_input_from_terminal(
                 "Month: ", TerminalApp.MONTH_RANGE)
-            # get star sign based on user's day and month
+            # Get star sign based on user's day and month input
             star_sign = self.get_star_sign(
                 day_input,
                 month_input
             )
         except ValueError as e:
             print(e)
-        # show star sign info to user
+        # Show star sign info to user
         print("Information")
         self.print_divider(TerminalApp.DIVIDER_LEN)
         print("Sign: {} {} {}".format(
@@ -135,6 +135,3 @@ class TerminalApp:
                 self.print_star_sign()
             case TerminalApp.Option.QUIT:
                 self.quit()
-            case _:
-                # Decide what kind of exception should be raised
-                raise Exception()
