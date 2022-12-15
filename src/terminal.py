@@ -30,7 +30,7 @@ class TerminalApp:
             TerminalApp.DIVIDER_LEN, "OPTIONS", '*', 'magenta')
         print(colored("1. History", 'green'))
         print(colored("2. New Reading", 'yellow'))
-        print(colored("3. Card of the Day", 'magenta'))
+        print(colored("3. Card of the Day", 'white'))
         print(colored("4. Star Sign Information", 'blue'))
         print(colored("5. Quit", 'red'))
         self.print_divider(
@@ -105,8 +105,8 @@ class TerminalApp:
         # show star sign info to user
         print("Information")
         self.print_divider(TerminalApp.DIVIDER_LEN)
-        print("Sign: {} {} {} {}".format(
-            star_sign["sign"], star_sign["emoji"], star_sign["element"], star_sign["quality"]))
+        print("Sign: {} {} {}".format(
+            star_sign["sign"], star_sign["emoji"], star_sign["element"]))
 
     def get_int_input_from_terminal(self, prompt, range_):
         while True:
