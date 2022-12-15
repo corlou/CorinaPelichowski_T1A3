@@ -59,7 +59,7 @@ class TerminalApp:
 
     # get the card
     def get_card_of_the_day(self):
-        return choice(list(self.deck))
+        return choice(self.deck)
 
     # show the card
     def print_card_of_the_day(self):
@@ -69,7 +69,7 @@ class TerminalApp:
     # get reading and append to History
     def get_reading(self):
         reading_cards = sample(
-            list(self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
+            (self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
         self.history.append(reading_cards)
         return reading_cards
 

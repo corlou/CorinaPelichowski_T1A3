@@ -2,7 +2,7 @@
 
 Tarot is expensive and difficult to find so this terminal app will give you free card readings whenever you are in the need for some guidance.
 
-# How to Install the App:
+# How to install the App:
 
 # When the App is running:
 
