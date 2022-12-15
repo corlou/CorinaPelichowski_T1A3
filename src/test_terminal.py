@@ -10,19 +10,19 @@ terminal_app = TerminalApp(tarot_cards)
 
 
 def test_get_card_of_the_day():
-    # Run the function we're testing
+    # Run the function to get a random card
     day_card = terminal_app.get_card_of_the_day()
     # Check that the returned card exists in the deck
     assert day_card in terminal_app.deck
 
 
-# get_reading works when three random cards are returned AND they are appended to the history
+# get_reading works when 3 random cards are returned AND are appended to History
 
 def test_get_reading():
-  # Run the function we're testing
+  # Run the function
     reading_cards = terminal_app.get_reading()
-  # check that three cards are being returned
+  # Check that three cards are being returned
     for card in reading_cards:
         assert card in terminal_app.deck
-  # check that the three cards are being added to the reading history
+  # Check that the three cards are being added to the reading history
     assert reading_cards in terminal_app.history
