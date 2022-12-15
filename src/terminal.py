@@ -120,7 +120,7 @@ class TerminalApp:
         return option
 
     def quit(self):
-        print("Closing application")
+        print("\N{crystal ball}" + " Goodbye")
         exit(0)
 
     def execute_option(self, option):
