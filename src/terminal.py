@@ -12,8 +12,8 @@ class TerminalApp:
     DIVIDER_LEN = 20
 
     class Option:
-        HISTORY = 1
-        NEW_READING = 2
+        NEW_READING = 1
+        HISTORY = 2
         CARD_OF_THE_DAY = 3
         STAR_SIGN = 4
         QUIT = 5
@@ -28,8 +28,8 @@ class TerminalApp:
     def print_options(self):
         self.print_divider(
             TerminalApp.DIVIDER_LEN, "OPTIONS", '*', 'magenta')
-        print(colored("1. History", 'green'))
-        print(colored("2. New Reading", 'yellow'))
+        print(colored("1. New Reading", 'yellow'))
+        print(colored("2. History", 'green'))
         print(colored("3. Card of the Day", 'white'))
         print(colored("4. Star Sign Information", 'blue'))
         print(colored("5. Quit", 'red'))
@@ -45,6 +45,19 @@ class TerminalApp:
     def __init__(self, deck):
         self.deck = deck
         self.history = []
+
+    # Get reading and append to History
+    def get_reading(self):
+        reading_cards = sample(
+            (self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
+        self.history.append(reading_cards)
+        return reading_cards
+
+    # Show the reading
+    def print_reading(self):
+        reading_cards = self.get_reading()
+        for card in reading_cards:
+            print(card)
 
     def get_history(self):
         return self.history
@@ -65,19 +78,6 @@ class TerminalApp:
     def print_card_of_the_day(self):
         day_card = self.get_card_of_the_day()
         print(day_card)
-
-    # Get reading and append to History
-    def get_reading(self):
-        reading_cards = sample(
-            (self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
-        self.history.append(reading_cards)
-        return reading_cards
-
-    # Show the reading
-    def print_reading(self):
-        reading_cards = self.get_reading()
-        for card in reading_cards:
-            print(card)
 
     # Get star sign
     def get_star_sign(self, day, month):
@@ -125,10 +125,10 @@ class TerminalApp:
 
     def execute_option(self, option):
         match option:
-            case TerminalApp.Option.HISTORY:
-                self.print_history()
             case TerminalApp.Option.NEW_READING:
                 self.print_reading()
+            case TerminalApp.Option.HISTORY:
+                self.print_history()
             case TerminalApp.Option.CARD_OF_THE_DAY:
                 self.print_card_of_the_day()
             case TerminalApp.Option.STAR_SIGN:

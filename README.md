@@ -32,7 +32,7 @@ Link to source control repository: https://github.com/corlou/CorinaPelichowski_T
 
 ## R5 Code Style
 
-PEP 8 – Style Guide for Python Code has been utilised.
+PEP 8 - Style Guide for Python Code has been utilised.
 Some examples include (but not limited to):
 
 - Use 4 spaces per indentation level.
