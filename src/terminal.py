@@ -91,7 +91,7 @@ class TerminalApp:
 
     # Show star sign
     def print_star_sign(self):
-        # this will store the star sign info after we get user input
+        # This will store the star sign info after we get user input
         star_sign = None
         try:
             # User inputs a number to select a day
