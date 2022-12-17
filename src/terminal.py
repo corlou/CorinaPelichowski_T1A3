@@ -1,15 +1,16 @@
 from random import choice, sample
 from sys import exit
 from termcolor import colored
-from kerykeion import KrInstance
+from kerykeion import Report, KrInstance
 from fullmoon import NextFullMoon
 import emoji
 
 
 class TerminalApp:
     NUMBER_OF_CARDS_IN_READING = 3
-    MONTH_RANGE = (1, 13)
     DAY_RANGE = (1, 32)
+    MONTH_RANGE = (1, 13)
+    YEAR_RANGE = (1920, 2030)
     OPTION_RANGE = (1, 7)
     DIVIDER_LEN = 20
 
@@ -18,8 +19,9 @@ class TerminalApp:
         HISTORY = 2
         CARD_OF_THE_DAY = 3
         STAR_SIGN = 4
-        FULL_MOON = 5
-        QUIT = 6
+        STAR_CHART = 5
+        FULL_MOON = 6
+        QUIT = 7
 
     def run(self):
         while True:
@@ -35,8 +37,9 @@ class TerminalApp:
         print(colored("2. History", 'green'))
         print(colored("3. Card of the Day", 'white'))
         print(colored("4. Star Sign Information", 'blue'))
-        print(colored("5. Next Full Moon", 'white'))
-        print(colored("6. Quit", 'red'))
+        print(colored("5. Print Star Chart", 'magenta'))
+        print(colored("6. Next Full Moon", 'white'))
+        print(colored("7. Quit", 'red'))
         self.print_divider(
             TerminalApp.DIVIDER_LEN, divider='*', color='magenta')
 
@@ -113,6 +116,19 @@ class TerminalApp:
         print("Sign: {} {} {}".format(
             star_sign["sign"], star_sign["emoji"], star_sign["element"]))
 
+    # Get star chart
+    def get_star_chart(self, year, month, day):
+      star_report = KrInstance("User", year=year, month=month, day=day).sun
+      report = Report(star_report)
+      report.print_report()
+    
+    # Show star chart
+    def print_star_chart(self):
+       kanye = KrInstance("Kanye", 1977, 6, 8, 8, 45, "Atlanta")
+       report = Report(kanye)
+       report.print_report()
+
+
     # Get the next Full Moon
     def get_next_full_moon(self):
         n = NextFullMoon()
@@ -150,6 +166,8 @@ class TerminalApp:
                 self.print_card_of_the_day()
             case TerminalApp.Option.STAR_SIGN:
                 self.print_star_sign()
+            case TerminalApp.Option.STAR_CHART:
+                self.print_star_chart()
             case TerminalApp.Option.FULL_MOON:
                 self.print_next_full_moon()
             case TerminalApp.Option.QUIT:
