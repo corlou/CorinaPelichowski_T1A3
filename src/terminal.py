@@ -116,7 +116,8 @@ class TerminalApp:
                     raise ValueError
                 break
             except ValueError:
-                print("Please enter a valid whole number.")
+                print(
+                    "Please enter a valid whole number. Between 1-5 for Menu, 1-31 for Day, 1-12 for Month.")
         return option
 
     def quit(self):
