@@ -3,6 +3,7 @@ from sys import exit
 from termcolor import colored
 from kerykeion import KrInstance
 from fullmoon import NextFullMoon
+import emoji
 
 
 class TerminalApp:
@@ -131,11 +132,12 @@ class TerminalApp:
                 break
             except ValueError:
                 print(
-                    "Please enter a valid whole number. Between 1-5 for Menu, 1-31 for Day, 1-12 for Month.")
+                    "Please enter a valid whole number. Between 1-6 for Menu, 1-31 for Day, 1-12 for Month.")
         return option
 
     def quit(self):
-        print("\N{crystal ball}" + " Goodbye")
+        farewell = emoji.emojize(':crystal_ball: Goodbye')
+        print(farewell)
         exit(0)
 
     def execute_option(self, option):
