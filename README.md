@@ -65,23 +65,23 @@ Every time a user gets a reading, that reading is appended to history which is t
 
 #### Feature 3: Card of the Day
 
-This gets a random card from the list in deck.py and returns it to the user. It does this with the python in-built function called "choice".
+This gets a random card from the list in deck.py and returns it to the user. It does this with the python in-built function called "choice" which loops through the tarot_cards list, selects one random card, and returns it to the user.
 
 #### Feature 4: Star Sign Information
 
-This was used with the Kerykeion package, specifically importing the KrInstance module.
+This was used with the Kerykeion package, specifically importing the KrInstance module. It takes three inputs from a user and returns their star sign information with the name, emoji, and the associated element.
 
 #### Feature 5: Print Star Chart
 
-This was also used with the Kerykeion package
+This was also used with the Kerykeion package, specifically the Report module. The user inputs the Day, Month, and Year (all of which have been given a range) and the Report Module returns a table to the user. There's room for expansion there's an option for the user can add other user inputs to view star chart compatibility (not implemented just yet).
 
 #### Feature 6: Next Full Moon
 
-This was used with the fullmoon python package
+This was used with the fullmoon python package, specifically the NextFullMoon module. A user puts in the request to the module to get the next full moon date and time and the module returns it to the user.
 
 #### Feature 7: Quit
 
-This stops the app and returns a message "Goodbye" with the crystal ball emoji.
+This stops the app and returns a message "Goodbye" with the crystal ball emoji by implementing the Python emoji package.
 
 ##### Error Handling:
 
@@ -95,16 +95,28 @@ NOTE:
 
 ## R7 Implementation Plan
 
-NOTE:
+#### Feature 3: Card of the Day
 
-- outlines how each feature will be implemented and a checklist of tasks for each feature
+This was the first feature I did as it was the easiest: Take an input from a user and return a random result. I expected this to take 2-3 days (which it did) but the hardest part was the list vs dictionary. The dictionary would return a single random result which is what was needed. Once the code was working, I wrote a test to cover this feature.
 
-- prioritise the implementation of different features, or checklist items within a feature
-- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
+##### Feature 1: New Reading and Feature 2: History
 
-Utilise a suitable project management platform to track this implementation plan.
+Once the single random card return was successful, it was time to return three random cards. I was expecting this to take a week but tit took longer because trying to return a random sample from a dictionary was not an option in Python. So I changed the dictionary to a list and was able to return a single random card (Feature 3) and three random cards (Feature 1). Then it was only a matter of appending the reading to the History option to be called. Once the code was working for this part, I wrote a test to cover these features.
 
-Provide screenshots/images and/or a reference to an accessible project management platform used to track this implementation plan.
+#### Feature 4: Star Sign Information and Feature 5: Star Chart
+
+These were also done in tandem as they both were using the Kerykeion package but implementing different modules. This took about 4 days to complete as the documentation was easy to follow along.
+
+#### Feature 7: Quit
+
+This was done in less than a day as it was very few lines of code and wanted a small easy wim.
+
+#### Feature 6: Next Full Moon
+
+This was done last as I was going to use a Moon API but I found a Python package that did the heavy lifting and returned something simple for the users.
+
+Link to Trello: https://trello.com/invite/b/A1d3SP1k/ATTIc7e0e64d92de7e7682712a1880fd260cA14B80BA/assignment-3-terminal-tarot
+NOTE: Some of the dates in trello might be a bit off because I genuinely forgot to use it until almost half way through doing this assignment. As I use Jira for work, please don't let this mishap be a reflection of me as an organised dev.
 
 ## R8 Instructions for Installation
 
