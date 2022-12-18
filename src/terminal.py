@@ -66,9 +66,11 @@ class TerminalApp:
         for card in reading_cards:
             print(card)
 
+    # Get a history of readings
     def get_history(self):
         return self.history
-
+    
+    # Show a history of readings
     def print_history(self):
         history = self.get_history()
         for i, val in enumerate(history):
