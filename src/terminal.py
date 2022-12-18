@@ -11,7 +11,7 @@ class TerminalApp:
     DAY_RANGE = (1, 32)
     MONTH_RANGE = (1, 13)
     YEAR_RANGE = (1920, 2030)
-    OPTION_RANGE = (1, 7)
+    OPTION_RANGE = (1, 8)
     DIVIDER_LEN = 20
 
     class Option:
@@ -54,7 +54,6 @@ class TerminalApp:
         self.history = []
 
     # Get reading and append to History
-
     def get_reading(self):
         reading_cards = sample(
             (self.deck), TerminalApp.NUMBER_OF_CARDS_IN_READING)
@@ -118,15 +117,34 @@ class TerminalApp:
 
     # Get star chart
     def get_star_chart(self, year, month, day):
-      star_report = KrInstance("User", year=year, month=month, day=day).sun
-      report = Report(star_report)
-      report.print_report()
+      star_report = KrInstance("User", day=day, month=month, year=year)
+      return star_report
+      
     
     # Show star chart
     def print_star_chart(self):
-       kanye = KrInstance("Kanye", 1977, 6, 8, 8, 45, "Atlanta")
-       report = Report(kanye)
-       report.print_report()
+       # This will store the star chart info after we get user input
+        star_chart = None
+        try:
+          # User inputs a number to select a day
+            day_input = self.get_int_input_from_terminal(
+                "Day: ", TerminalApp.DAY_RANGE)
+            # User inputs a number to select a month
+            month_input = self.get_int_input_from_terminal(
+                "Month: ", TerminalApp.MONTH_RANGE)
+                # User inputs a number to select a year
+            year_input = self.get_int_input_from_terminal(
+                "Year: ", TerminalApp.YEAR_RANGE)
+            # Get star chart based on user's input for day, month, and year 
+            star_chart = self.get_star_chart(
+                year_input,
+                month_input,
+                day_input
+            )
+        except ValueError as e:
+            print(e)
+        report = Report(star_chart)
+        report.print_report()
 
 
     # Get the next Full Moon
@@ -148,7 +166,7 @@ class TerminalApp:
                 break
             except ValueError:
                 print(
-                    "Please enter a valid whole number. Between 1-6 for Menu, 1-31 for Day, 1-12 for Month.")
+                    "Please enter a valid whole number. Between 1-7 for Menu, 1-31 for Day, 1-12 for Month.")
         return option
 
     def quit(self):
