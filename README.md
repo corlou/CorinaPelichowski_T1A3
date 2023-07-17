@@ -1,5 +1,14 @@
 # Welcome to the Tarot Reader Terminal App
 
+## Start the App:
+
+1. Create a new virtual environment: python3 -m venv myenv
+   Replace myenv with the desired name for your virtual environment.
+
+2. source myenv/bin/activate
+
+3. run ./start.sh
+
 ## R1 - Documentation
 
 Answers to all the documentation requirements below.
