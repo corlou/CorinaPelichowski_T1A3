@@ -7,7 +7,7 @@
 
 2. source myenv/bin/activate
 
-3. Type ./start.sh into the terminal
+3. Type ./start.sh into the terminal OR if all the packages are installed, then just use: python3 main.py
 
 ## R1 - Documentation
 
