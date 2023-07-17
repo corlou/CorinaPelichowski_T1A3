@@ -7,7 +7,7 @@
 
 2. source myenv/bin/activate
 
-3. run ./start.sh
+3. Type ./start.sh into the terminal
 
 ## R1 - Documentation
 
